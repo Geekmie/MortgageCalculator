@@ -42,16 +42,37 @@ class Mortgage:
     
 if __name__ == '__main__':
     mon = 30 * 12
-
-    L1 = 500000
-    r1 = 2.75
-    m1 = Mortgage(L1, mon, r1)
+    cash = 60000
+    
+    Loan1 = 520000
+    LoanBal1 = 514837
+    rate1old = 3.25
+    rate1new = 2.75
     close1 = 3400
+    intPaid1 = 8837.66
 
-    L2 = 100000
-    r2 = 3.5
-    m2 = Mortgage(L2, mon, r2)
+    mort1orig = Mortgage(Loan1, mon, rate1old)
+    intBal1 = mort1orig.getTotalInterest() - intPaid1
+    print("Loan 1 int bal = " + '{0:.2f}'.format(intBal1))
+
+    Loan2 = 140000
+    LoanBal2 = 137655
+    rate2old = 4.75
+    rate2new = 3.5
     close2 = 2900
+    intPaid2 = 7499.96
 
-    m1.printSummary()
-    m2.printSummary()
+    mort2orig = Mortgage(Loan2, mon, rate2old)
+    intBal2 = mort2orig.getTotalInterest() - intPaid2
+    print("Loan 2 int bal = " + '{0:.2f}'.format(intBal2))
+
+    
+    for i in range(0, cash + 1):
+        bal1 = LoanBal1 - i
+        mort1old = Mortgage(bal1, mon, rate1old)
+        mort1new = Mortgage(bal1, mon, rate1new)
+
+        bal2 = LoanBal2 - (cash - i)
+        mort2old = Mortgage(bal2, mon, rate2old)
+        mort2new = Mortgage(bal2, mon, rate2new)
+
